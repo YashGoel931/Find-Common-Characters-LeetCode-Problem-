@@ -1,0 +1,37 @@
+class Solution {
+     public String intersection(String s1, String s2) {
+     char[] nums1=s1.toCharArray();
+     char[] nums2=s2.toCharArray();
+     Arrays.sort(nums1);
+     Arrays.sort(nums2);
+     ArrayList<Character> al=new ArrayList<>();
+     int a=nums1.length-1,b=nums2.length-1;
+     while(a>=0 && b>=0){
+        int z=Character.compare(nums1[a],nums2[b]);
+       if(z==0)
+        {
+         al.add(nums1[a]);
+         a--;
+         b--;
+        }
+       else if(z>0)
+         a--;
+       else if(z<0)
+         b--;
+     }
+     String s="";
+     for(char i : al)
+        s+=i;
+     return s;
+    }
+    public List<String> commonChars(String[] words) {
+    ArrayList<String> al=new ArrayList<>();
+    String a=words[0];
+    for(int i=1 ; i<words.length ; i++){
+     a=intersection(a,words[i]);
+     }
+    for(int i=0 ; i<a.length() ; i++)
+    al.add(Character.toString(a.charAt(i)));
+    return al;
+    }
+}
